@@ -7,7 +7,17 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#ebebeb",
+        secondary: "#0d2028",
+        accent: "#e0cf87",
+        accentDark: "#ada268",
+      },
+      fontFamily: {
+        raleway: ["var(--font-raleway)"],
+      },
+    },
   },
   plugins: [],
 };
