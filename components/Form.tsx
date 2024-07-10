@@ -24,6 +24,9 @@ export default function Form() {
       if (!fullUrl) return;
 
       const newShortUrl = await genShortUrl(fullUrl.href)
+
+      if (!newShortUrl) return;
+
       setErr(false);
       setShortUrl(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/${newShortUrl}`)
 
