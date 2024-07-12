@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#ebebeb",
-        secondary: "#0d2028",
-        accent: "#e0cf87",
-        accentDark: "#ada268",
+        primary: "#390099",
+        secondary: "#ffbd00",
+        accent: "#ff5400",
+        accentDark: "#9e0059",
       },
       fontFamily: {
         raleway: ["var(--font-raleway)"],

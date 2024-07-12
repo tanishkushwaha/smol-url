@@ -1,7 +1,8 @@
 "use server";
 
 import ShortUniqueId from "short-unique-id";
-import pool from "./db";
+import pool from "@/utils/db";
+import { redirect } from "next/navigation";
 
 export async function genShortUrl(url: string) {
   try {
@@ -10,7 +11,7 @@ export async function genShortUrl(url: string) {
     uid.setDictionary("alpha_lower");
     const shortUrl = uid.rnd();
 
-    await pool.query("INSERT INTO urls VALUES ($1,$2)", [
+    await pool!.query("INSERT INTO urls VALUES ($1,$2)", [
       shortUrl,
       fullUrl.href,
     ]);
@@ -23,7 +24,7 @@ export async function genShortUrl(url: string) {
 
 export async function getFullUrl(url: string) {
   try {
-    const res = await pool.query("SELECT * FROM urls WHERE short_url=$1", [
+    const res = await pool!.query("SELECT * FROM urls WHERE short_url=$1", [
       url,
     ]);
 
@@ -33,4 +34,8 @@ export async function getFullUrl(url: string) {
   } catch (err) {
     console.log(err);
   }
+}
+
+export async function serverRedirect(url: string) {
+  redirect(url);
 }
