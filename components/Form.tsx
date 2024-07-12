@@ -59,7 +59,7 @@ export default function Form() {
         <button type="submit" className="bg-accent rounded text-lg text-white px-4 h-12 md:h-full transition-colors duration-200 active:bg-accentDark">Shorten</button>
       </form>
 
-      <div className="flex flex-col md:flex-row gap-4 items-center h-16 box-border">
+      <div className="flex flex-col md:flex-row gap-4 justify-center items-center box-border">
         {loading ? <ClipLoader color="#fff" size={40} /> : (
           shortUrl && (
             <>
