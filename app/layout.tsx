@@ -12,7 +12,7 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   title: "SmolURL",
-  description: "A URL shortener app",
+  description: "A URL Shortener App",
 };
 
 export default function RootLayout({
