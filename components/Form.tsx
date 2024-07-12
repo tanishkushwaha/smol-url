@@ -1,13 +1,15 @@
 'use client';
 
 import { genShortUrl } from "@/utils/actions";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import ClipboardSVG from "./ClipboardSVG";
+import { ClipLoader } from "react-spinners";
 
 export default function Form() {
 
-  const [shortUrl, setShortUrl] = useState<string | undefined>()
+  const [shortUrl, setShortUrl] = useState<string | null>()
+  const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -23,11 +25,12 @@ export default function Form() {
 
       if (!fullUrl) return;
 
+      setLoading(true);
       const newShortUrl = await genShortUrl(fullUrl.href)
+      setLoading(false);
 
       if (!newShortUrl) return;
 
-      setErr(false);
       setShortUrl(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/${newShortUrl}`)
 
     } catch (err: any) {
@@ -35,10 +38,17 @@ export default function Form() {
 
       if (err.message === "Failed to construct 'URL': Invalid URL") {
         setErr(true);
-        setShortUrl("Invalid URL. It should be in the format 'https://example.com'")
+        setShortUrl(null)
       }
     }
   }
+
+  useEffect(() => {
+    if (err) {
+      toast.error("Invalid URL. It should be in the format 'https://example.com'");
+      setErr(false);
+    }
+  }, [err]);
 
   return (
     <>
@@ -50,18 +60,21 @@ export default function Form() {
       </form>
 
       <div className="flex flex-col md:flex-row gap-4 items-center h-16 box-border">
-        <a className="text-secondary text-lg md:text-2xl" href={err ? '' : shortUrl}>{shortUrl}</a>
-
-        {shortUrl &&
-          !err &&
-          <ClipboardSVG className="fill-secondary size-5 cursor-pointer"
-            onClick={() => {
-              navigator.clipboard.writeText(shortUrl)
-                .then(() => toast.success('Copied to clipboard!'))
-                .catch(err => toast.error('Could not copy to clipboard'));
-            }}
-          />}
-
+        {loading ? <ClipLoader color="#fff" size={40} /> : (
+          shortUrl && (
+            <>
+              <a className="text-secondary text-lg md:text-2xl" href={err ? '' : shortUrl}>{shortUrl}</a>
+              <ClipboardSVG className="fill-secondary size-5 cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(shortUrl)
+                    .then(() => toast.success('Copied to clipboard!'))
+                    .catch(err => toast.error('Could not copy to clipboard'));
+                }}
+              />
+            </>
+          )
+        )
+        }
       </div>
     </>
   )
