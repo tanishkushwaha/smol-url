@@ -54,17 +54,20 @@ export default function Form() {
     <>
       <Toaster position="bottom-center" />
 
-      <form className="flex md:h-12 gap-4 flex-col md:flex-row" onSubmit={handleSubmit}>
-        <input type="text" name='fullUrl' placeholder="Enter URL" className="text-lg h-12 md:h-full w-full rounded px-4 outline-none" />
-        <button type="submit" className="bg-accent rounded text-lg text-white px-4 h-12 md:h-full transition-colors duration-200 active:bg-accentDark">Shorten</button>
+      <form className="flex md:h-16 gap-4 flex-col md:flex-row" onSubmit={handleSubmit}>
+
+        <input type="text" name='fullUrl' placeholder="enter url" className="md:flex-1 text-2xl h-16 md:h-full rounded-xl px-4 outline-none border-[3px] border-black" />
+
+        <button type="submit" className="bg-pastelRed rounded-xl text-2xl text-white px-6 h-16 md:h-full transition-colors duration-200 active:bg-black">shorten</button>
+
       </form>
 
       <div className="flex flex-col md:flex-row gap-4 justify-center items-center text-center box-border">
-        {loading ? <ClipLoader color="#fff" size={40} /> : (
+        {loading ? <ClipLoader color="#000" size={60} /> : (
           shortUrl && (
             <>
-              <a className="text-secondary text-lg md:text-2xl" href={err ? '' : shortUrl}>{shortUrl}</a>
-              <ClipboardSVG className="fill-secondary size-5 cursor-pointer"
+              <a className="text-secondary text-3xl" href={err ? '' : shortUrl}>{shortUrl}</a>
+              <ClipboardSVG className="fill-black size-8 cursor-pointer"
                 onClick={() => {
                   navigator.clipboard.writeText(shortUrl)
                     .then(() => toast.success('Copied to clipboard!'))

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Raleway } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
-const raleway = Raleway({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-raleway",
-});
+const kollektif = localFont({
+  src: '../fonts/Kollektif.ttf',
+  display: 'swap',
+  variable: '--font-kollektif',
+})
+
 
 export const metadata: Metadata = {
   title: "SmolURL",
@@ -22,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={raleway.className}>{children}</body>
+      <body className={kollektif.className}>{children}</body>
     </html>
   );
 }
