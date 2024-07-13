@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { kollektif } from "@/utils/fonts";
 import "./globals.css";
-
-
-const chococooky = localFont({
-  src: '../fonts/Chococooky.ttf',
-  display: 'swap',
-  variable: '--font-chococooky',
-})
-
 
 export const metadata: Metadata = {
   title: "SmolURL",
@@ -22,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={chococooky.className}>{children}</body>
+      <body className={kollektif.className}>{children}</body>
     </html>
   );
 }

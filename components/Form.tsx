@@ -5,6 +5,7 @@ import { useState, FormEvent, useEffect } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import ClipboardSVG from "./ClipboardSVG";
 import { ClipLoader } from "react-spinners";
+import { chococooky } from "@/utils/fonts";
 
 export default function Form() {
 
@@ -54,11 +55,14 @@ export default function Form() {
     <>
       <Toaster position="bottom-center" />
 
-      <form className="flex md:h-16 gap-4 flex-col md:flex-row" onSubmit={handleSubmit}>
+      <form className="flex md:h-16 gap-8 md:gap-4 flex-col md:flex-row" onSubmit={handleSubmit}>
 
         <input type="text" name='fullUrl' placeholder="Enter url" className="md:flex-1 text-2xl h-16 md:h-full rounded-xl px-4 outline-none border-[3px] border-black" />
 
-        <button type="submit" className="bg-pastelRed rounded-xl text-2xl text-white px-6 h-16 md:h-full transition-colors duration-200 active:bg-black">Make it smol!</button>
+        <div className="relative w-full">
+          <img className="image" src='/bongo-cat.gif' alt="bongo-cat" />
+          <button type="submit" className={`${chococooky.className} bg-pastelRed rounded-xl text-2xl text-white px-6 h-16 w-full md:h-full transition-colors duration-200 active:bg-black`}>Make it smol!</button>
+        </div>
 
       </form>
 
