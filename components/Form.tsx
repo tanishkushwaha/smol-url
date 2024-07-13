@@ -56,9 +56,9 @@ export default function Form() {
 
       <form className="flex md:h-16 gap-4 flex-col md:flex-row" onSubmit={handleSubmit}>
 
-        <input type="text" name='fullUrl' placeholder="enter url" className="md:flex-1 text-2xl h-16 md:h-full rounded-xl px-4 outline-none border-[3px] border-black" />
+        <input type="text" name='fullUrl' placeholder="Enter url" className="md:flex-1 text-2xl h-16 md:h-full rounded-xl px-4 outline-none border-[3px] border-black" />
 
-        <button type="submit" className="bg-pastelRed rounded-xl text-2xl text-white px-6 h-16 md:h-full transition-colors duration-200 active:bg-black">shorten</button>
+        <button type="submit" className="bg-pastelRed rounded-xl text-2xl text-white px-6 h-16 md:h-full transition-colors duration-200 active:bg-black">Make it smol!</button>
 
       </form>
 

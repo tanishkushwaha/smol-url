@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-// const inter = Inter({ subsets: ["latin"] });
 
-const kollektif = localFont({
-  src: '../fonts/Kollektif.ttf',
+const chococooky = localFont({
+  src: '../fonts/Chococooky.ttf',
   display: 'swap',
-  variable: '--font-kollektif',
+  variable: '--font-chococooky',
 })
 
 
@@ -23,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={kollektif.className}>{children}</body>
+      <body className={chococooky.className}>{children}</body>
     </html>
   );
 }
