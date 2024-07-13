@@ -4,7 +4,7 @@ import "./globals.css";
 
 
 const chococooky = localFont({
-  src: '../fonts/Chococooky.ttf',
+  src: '../fonts/Kollektif.ttf',
   display: 'swap',
   variable: '--font-chococooky',
 })
