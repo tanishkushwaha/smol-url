@@ -11,9 +11,6 @@ const config: Config = {
       colors: {
         pastelRed: "#ffadad",
       },
-      fontFamily: {
-        raleway: ["var(--font-raleway)"],
-      },
     },
   },
   plugins: [],
