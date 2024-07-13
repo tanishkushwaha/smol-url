@@ -57,7 +57,7 @@ export default function Form() {
 
       <form className="flex md:h-16 gap-8 md:gap-4 flex-col md:flex-row" onSubmit={handleSubmit}>
 
-        <input type="text" name='fullUrl' placeholder="Enter url" className="md:flex-1 text-2xl h-16 md:h-full rounded-xl px-4 outline-none border-[3px] border-black" />
+        <input type="text" name='fullUrl' placeholder="Paste url" className="md:flex-1 text-2xl h-16 md:h-full rounded-xl px-4 outline-none border-[3px] border-black" />
 
         <div className="relative w-full">
           <img className="image" src='/bongo-cat.gif' alt="bongo-cat" />
