@@ -1,20 +1,17 @@
 "use server";
 
 import ShortUniqueId from "short-unique-id";
-import pool from "@/utils/db";
+import { sql } from "@vercel/postgres";
 import { redirect } from "next/navigation";
 
 export async function genShortUrl(url: string) {
   try {
     const fullUrl = new URL(url);
-    const uid = new ShortUniqueId({ length: 4 });
+    const uid = new ShortUniqueId({ length: 6 });
     uid.setDictionary("alpha_lower");
     const shortUrl = uid.rnd();
 
-    await pool!.query("INSERT INTO urls VALUES ($1,$2)", [
-      shortUrl,
-      fullUrl.href,
-    ]);
+    await sql`INSERT INTO urls VALUES (${shortUrl}, ${fullUrl.href})`;
 
     return shortUrl;
   } catch (err) {
@@ -24,9 +21,7 @@ export async function genShortUrl(url: string) {
 
 export async function getFullUrl(url: string) {
   try {
-    const res = await pool!.query("SELECT * FROM urls WHERE short_url=$1", [
-      url,
-    ]);
+    const res = await sql`SELECT * FROM urls WHERE short_url=${url}`;
 
     if (!res.rows[0]) return;
 
